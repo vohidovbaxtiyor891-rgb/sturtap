@@ -1,14 +1,556 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>KhanCinema</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Bugun ustozda suv borakan lekn bzga bermadila!!!!</h1>
+
+    <header class="header">
+
+        <div class="logo">
+            <span>KHAN</span>CINEMA
+        </div>
+
+        <nav class="navbar">
+            <a href="#home" class="nav-link active" data-section="home">
+                Bosh sahifa
+            </a>
+
+            <a href="#sport" class="nav-link" data-section="sport">
+                Sport Live
+            </a>
+
+            <a href="#movies" class="nav-link" data-type="Kino">
+                Kinolar
+            </a>
+
+            <a href="#movies" class="nav-link" data-type="Serial">
+                Seriallar
+            </a>
+
+            <a href="#movies" class="nav-link" data-type="Multfilm">
+                Multfilmlar
+            </a>
+        </nav>
+
+        <div class="header-right">
+
+            <select id="languageSelect">
+                <option value="uz">UZ</option>
+                <option value="ru">RU</option>
+                <option value="en">EN</option>
+            </select>
+
+            <button id="themeBtn" class="icon-btn">🌙</button>
+
+            <!-- Login/Register -->
+            <button id="authButton" class="auth-button">
+                Kirish / Akkaunt yaratish
+            </button>
+
+            <!-- Profile -->
+            <button id="profileButton" class="profile-mini hidden">
+                <img id="headerAvatar" src="" alt="Avatar">
+                <span id="headerUserName">Profil</span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+
+        <section id="home" class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-small">XUSH KELIBSIZ</span>
+
+                <h1>
+                    Khan<span>Cinema</span>
+                </h1>
+
+                <p>
+                    Kinolar, seriallar, multfilmlar va jonli sport —
+                    barchasi bir joyda.
+                </p>
+
+                <div class="hero-buttons">
+                    <button onclick="goToMovies('Kino')">
+                        🎬 Kinolar
+                    </button>
+
+                    <button onclick="goToMovies('Serial')">
+                        📺 Seriallar
+                    </button>
+
+                    <button onclick="goToMovies('Multfilm')">
+                        🧸 Multfilmlar
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INTRO -->
+
+        <section class="intro">
+
+            <div class="intro-card">
+                <div class="intro-icon">🎬</div>
+                <h3>Kinolar</h3>
+                <p>
+                    Eng mashhur va yangi filmlarni tomosha qiling.
+                </p>
+            </div>
+
+            <div class="intro-card">
+                <div class="intro-icon">📺</div>
+                <h3>Seriallar</h3>
+                <p>
+                    Mashhur seriallar va yangi qismlar.
+                </p>
+            </div>
+
+            <div class="intro-card">
+                <div class="intro-icon">🧸</div>
+                <h3>Multfilmlar</h3>
+                <p>
+                    Bolalar va oilaviy multfilmlar.
+                </p>
+            </div>
+
+            <div class="intro-card">
+                <div class="intro-icon">⚽</div>
+                <h3>Sport Live</h3>
+                <p>
+                    Jonli sport uchrashuvlarini kuzating.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- SPORT -->
+
+        <section id="sport" class="section sport-section">
+
+            <div class="section-title">
+
+                <div>
+                    <span class="section-label">LIVE</span>
+
+                    <h2>
+                        Sport Live
+                    </h2>
+                </div>
+
+                <span id="sportStatus" class="live-status">
+                    ● LIVE
+                </span>
+
+            </div>
+
+
+            <div class="sport-tabs">
+
+                <button class="sport-tab active" data-sport="football">
+                    ⚽ Football
+                </button>
+
+                <button class="sport-tab" data-sport="basketball">
+                    🏀 Basketball
+                </button>
+
+                <button class="sport-tab" data-sport="tennis">
+                    🎾 Tennis
+                </button>
+
+                <button class="sport-tab" data-sport="ufc">
+                    🥊 UFC
+                </button>
+
+                <button class="sport-tab" data-sport="all">
+                    🌐 Barchasi
+                </button>
+
+            </div>
+
+
+            <div id="sportGrid" class="sport-grid">
+
+                <div class="loading">
+                    Sport ma'lumotlari yuklanmoqda...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MOVIES -->
+
+        <section id="movies" class="section movies-section">
+
+            <div class="section-title">
+
+                <div>
+                    <span class="section-label">KHAN CINEMA</span>
+
+                    <h2 id="contentTitle">
+                        Kinolar
+                    </h2>
+                </div>
+
+                <div class="movie-count">
+                    <span id="contentCount">0</span> ta
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input type="text" id="searchInput" placeholder="Kino, serial yoki multfilm qidiring...">
+
+            </div>
+
+
+            <!-- GENRES -->
+
+            <div class="genre-buttons">
+
+                <button class="genre-btn active" data-genre="all">
+                    Barchasi
+                </button>
+
+                <button class="genre-btn" data-genre="28">
+                    Aksion
+                </button>
+
+                <button class="genre-btn" data-genre="35">
+                    Komediya
+                </button>
+
+                <button class="genre-btn" data-genre="18">
+                    Drama
+                </button>
+
+                <button class="genre-btn" data-genre="878">
+                    Fantastika
+                </button>
+
+                <button class="genre-btn" data-genre="27">
+                    Horror
+                </button>
+
+                <button class="genre-btn" data-genre="10749">
+                    Romantika
+                </button>
+
+                <button class="genre-btn" data-genre="16">
+                    Multfilm
+                </button>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div id="movieGrid" class="movie-grid">
+
+                <div class="loading">
+                    Kontent yuklanmoqda...
+                </div>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+
+            <div id="pagination" class="pagination"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MOVIE MODAL -->
+
+    <div id="movieModal" class="modal">
+
+        <div class="modal-box movie-modal-box">
+
+            <button class="close-btn" onclick="closeMovieModal()">
+                ×
+            </button>
+
+            <div id="movieDetails"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AUTH MODAL -->
+
+    <div id="authModal" class="modal">
+
+        <div class="modal-box auth-box">
+
+            <button class="close-btn" onclick="closeAuthModal()">
+                ×
+            </button>
+
+            <div class="auth-logo">
+                KHAN<span>CINEMA</span>
+            </div>
+
+            <h2 id="authTitle">
+                Kirish
+            </h2>
+
+
+            <div class="auth-tabs">
+
+                <button class="auth-tab active" data-auth="login">
+                    Kirish
+                </button>
+
+                <button class="auth-tab" data-auth="register">
+                    Akkaunt yaratish
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <form id="loginForm">
+
+                <input type="email" id="loginEmail" placeholder="Email" required>
+
+                <input type="password" id="loginPassword" placeholder="Parol" required>
+
+                <button class="main-submit">
+                    Kirish
+                </button>
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <form id="registerForm" class="hidden">
+
+                <input type="text" id="registerName" placeholder="Ismingiz" required>
+
+                <input type="text" id="registerSurname" placeholder="Familiyangiz" required>
+
+                <input type="email" id="registerEmail" placeholder="Email" required>
+
+                <input type="password" id="registerPassword" placeholder="Parol" required>
+
+                <button class="main-submit">
+                    Akkaunt yaratish
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE -->
+
+    <div id="profileModal" class="modal">
+
+        <div class="modal-box profile-box">
+
+            <button class="close-btn" onclick="closeProfile()">
+                ×
+            </button>
+
+
+            <div class="profile-cover">
+
+                <div class="profile-avatar-area">
+
+                    <div class="big-avatar">
+                        <img id="profileAvatar" src="" alt="Avatar">
+                    </div>
+
+                    <label class="avatar-upload">
+                        📷 Avatarni o'zgartirish
+                        <input type="file" id="avatarInput" accept="image/*">
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-main">
+
+                <div class="profile-heading">
+
+                    <div>
+                        <h2 id="profileName">
+                            Profil
+                        </h2>
+
+                        <p id="profileEmail">
+                            email
+                        </p>
+                    </div>
+
+                    <button id="editProfileBtn" class="edit-profile-btn">
+                        ✏️ Tahrirlash
+                    </button>
+
+                </div>
+
+
+                <!-- PROFILE INFO -->
+
+                <div id="profileInfo" class="profile-info">
+
+                    <div class="info-card">
+                        <span>Ism</span>
+                        <strong id="infoName">-</strong>
+                    </div>
+
+                    <div class="info-card">
+                        <span>Familiya</span>
+                        <strong id="infoSurname">-</strong>
+                    </div>
+
+                    <div class="info-card">
+                        <span>Telefon</span>
+                        <strong id="infoPhone">-</strong>
+                    </div>
+
+                    <div class="info-card">
+                        <span>Email</span>
+                        <strong id="infoEmail">-</strong>
+                    </div>
+
+                    <div class="info-card about-card">
+                        <span>Men haqimda</span>
+                        <strong id="infoAbout">
+                            Ma'lumot yo'q
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- EDIT PROFILE -->
+
+                <form id="profileEditForm" class="profile-edit hidden">
+
+                    <input type="text" id="editName" placeholder="Ism">
+
+                    <input type="text" id="editSurname" placeholder="Familiya">
+
+                    <input type="text" id="editPhone" placeholder="Telefon raqam">
+
+                    <input type="email" id="editEmail" placeholder="Email">
+
+                    <textarea id="editAbout" placeholder="Men haqimda..."></textarea>
+
+
+                    <div class="edit-buttons">
+
+                        <button type="submit" class="save-btn">
+                            💾 Saqlash
+                        </button>
+
+                        <button type="button" id="cancelEditBtn" class="cancel-btn">
+                            Bekor qilish
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- FAVORITES -->
+
+                <div class="favorites-section">
+
+                    <div class="favorites-heading">
+
+                        <div>
+                            <span class="section-label">
+                                MY LIST
+                            </span>
+
+                            <h2>
+                                ❤️ Sevimlilar
+                            </h2>
+                        </div>
+
+                        <span id="favoriteCount">
+                            0 ta
+                        </span>
+
+                    </div>
+
+
+                    <div id="favoriteGrid" class="favorite-grid">
+                    </div>
+
+                </div>
+
+
+                <button id="logoutBtn" class="logout-btn">
+                    🚪 Akkauntdan chiqish
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div id="toast" class="toast"></div>
+
+
+    <footer>
+
+        <div class="footer-logo">
+            KHAN<span>CINEMA</span>
+        </div>
+
+        <p>
+            © 2026 KhanCinema. Barcha huquqlar himoyalangan.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
